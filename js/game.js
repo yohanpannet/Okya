@@ -13,14 +13,17 @@ function buildBoard() {
 		randIndex = Math.floor(Math.random() * tileIndexes.length);
 		var randIndex = tileIndexes.splice(randIndex,1)[0];
 		var tile = tiles[randIndex];
-		//elt.innerHTML += '<div class="tile" id="tile'+tiles[i].x+'-'+tiles[i].y+'" draggable="true"><header>'+tiles[i].x+' '+tiles[i].y+'</header></div>';
-		//elt.innerHTML += '<div class="tile" id="tile'+tiles.x+'-'+tile.y+'" draggable="true"><header>'+tile.x+' '+tile.y+'</header></div>';
 		
 		var div = document.createElement('div');
 		div.setAttribute('class', 'tile');
+		div.setAttribute('droppable', true);
+		div.setAttribute('taken', false); 
+		div.setAttribute('fauna', tile.x);
+		div.setAttribute('flora', tile.y);
 		div.innerHTML='<header>'+tile.x+' '+tile.y+'</header>';
 		tile.elt=div;
 		elt.appendChild(div);
+		
 	}
 }
 

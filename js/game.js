@@ -20,7 +20,7 @@ function buildBoard() {
 		div.setAttribute('taken', false); 
 		div.setAttribute('fauna', tile.x);
 		div.setAttribute('flora', tile.y);
-		div.innerHTML='<header>'+tile.x+' '+tile.y+'</header>';
+		div.innerHTML='<header>'+tile.x+' </header><header>'+tile.y+'</header>';
 		tile.elt=div;
 		elt.appendChild(div);
 		
@@ -52,4 +52,4 @@ buildBoard();
 
 
 
-tiles[0].elt.style.color = "white";
+//tiles[0].elt.style.color = "white";

@@ -91,6 +91,5 @@ p2.addEventListener('dragstart', handleDragStart, false);
 
 tiles.forEach(function(tile) {
   tile.elt.addEventListener('dragover', handleDragOver, false);
-//  tile.elt.addEventListener('dragenter', handleDragEnter, false);
   tile.elt.addEventListener('drop', handleDrop, false);
 });

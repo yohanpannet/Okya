@@ -73,7 +73,7 @@ function tileTaken(tileElt, playerID){
 			tile.elt.setAttribute('droppable',false);
 		}
 	});
-	if (checkVictory(tileElt, playerID, nbPossibilities)== true){
+	if (checkVictory(tileElt, playerID, nbPossibilities) == true){
 		alert(playerID + ' Wins !');
 	} else {
 		switchPlayer();

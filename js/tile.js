@@ -10,6 +10,8 @@ var Tile = function(x, y) {
 	var that = this;
 	that.x = x;
 	that.y = y;
+	that.line = "";
+	that.col = "";
 	that.elt="out";
 	return that;
 };

@@ -45,8 +45,7 @@ function handleDrop(e) {
 
 	if (droppable == "true") {
 		
-		tileTaken(this, e.dataTransfer.getData('PlayerId'));
-		
+		tileTaken(this, e.dataTransfer.getData('PlayerId'));	
 	}
 
 }
@@ -71,6 +70,7 @@ function tileTaken(tileElt, playerID){
 			tile.elt.setAttribute('droppable',false);
 		}
 	});
+	switchPlayer();
 }
 
 function handleDragEnd(e) {

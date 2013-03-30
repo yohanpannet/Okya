@@ -15,4 +15,9 @@ var Tile = function(x, y) {
 };
 
 
-//tile = new Tile(2,3);
+var Player = function(id){
+	var that = this;
+	that.id = id;
+	that.elt = document.getElementById(id);
+	return that;
+}

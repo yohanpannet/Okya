@@ -2,6 +2,7 @@
  * @author Yohan
  */
 
+
 function buildBoard() {
 	//create tile index list for random pick up
 	tileIndexes=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
@@ -45,11 +46,39 @@ function randomPop(list){
 }
 
 
+function switchPlayer(){
+	currentPlayer.elt.setAttribute('draggable',false);
+	currentPlayer.elt.classList.remove('actif');
+	
+	if (currentPlayer === player1){
+		currentPlayer = player2;
+	} else {
+		currentPlayer = player1;
+	}
+	currentPlayer.elt.setAttribute('draggable',true);
+	currentPlayer.elt.classList.add('actif');
+}
+
+function pickFirstPlayer(){
+	if (Math.random()<0.5){
+			currentPlayer = player1;
+		} else {
+			currentPlayer = player2;
+		}
+	currentPlayer.elt.setAttribute('draggable',true);
+	currentPlayer.elt.classList.add('actif');
+}
+
 var tiles = [];
+currentPlayer = '';
+player1 = new Player("player1");
+player2 = new Player("player2");
+
+
 createTiles();
 
 buildBoard();
 
-
+pickFirstPlayer();
 
 //tiles[0].elt.style.color = "white";

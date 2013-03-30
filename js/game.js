@@ -7,7 +7,7 @@
 function buildBoard() {
 	//create tile index list for random pick up
 	tileIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-
+	
 	var board = document.getElementById("board");
 	board.innerHTML = '';
 	for (var i = 0; i < 4; i++) {
@@ -46,13 +46,6 @@ function createTiles(){
 	}
 }
 
-function randomPop(list){
-	var lst = [];
-	var index = Math.floor(Math.random() * lst.length);
-	lst2 = lst.slice(index);
-	popedElt = lst.pop();
-		
-}
 
 
 function switchPlayer(){
@@ -79,6 +72,15 @@ function pickFirstPlayer(){
 	currentPlayer.elt.classList.add('actif');
 	document.getElementById('playerTurn').innerHTML = currentPlayer.id + ' opens the game';
 	
+}
+
+function checkVictory(tileElt, playerID, nbPossibilities){
+	var Victory = false;
+	if (nbPossibilities == 0){
+		Victory = true;
+	};
+	
+	return Victory;
 }
 
 var tiles = [];

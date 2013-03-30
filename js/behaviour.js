@@ -60,17 +60,25 @@ function tileTaken(tileElt, playerID){
 	//set next selectable tiles
 	var fauna = tileElt.getAttribute('fauna');
 	var flora = tileElt.getAttribute('flora');
+	//select next playble tiles
+	var nbPossibilities = 0;
 	tiles.forEach(function(tile) {
 		
 		if (((tile.x == eval(fauna)) || (tile.y == eval(flora))) && tile.elt.getAttribute('taken') == "false"){
 			tile.elt.classList.add('droppable');
 			tile.elt.setAttribute('droppable',true);
+			nbPossibilities++;
 		} else {
 			tile.elt.classList.remove('droppable');
 			tile.elt.setAttribute('droppable',false);
 		}
 	});
-	switchPlayer();
+	if (checkVictory(tileElt, playerID, nbPossibilities)== true){
+		alert(playerID + ' Wins !');
+	} else {
+		switchPlayer();
+	}
+	
 }
 
 function handleDragEnd(e) {

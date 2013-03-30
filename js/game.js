@@ -57,6 +57,7 @@ function switchPlayer(){
 	}
 	currentPlayer.elt.setAttribute('draggable',true);
 	currentPlayer.elt.classList.add('actif');
+	document.getElementById('playerTurn').innerHTML = currentPlayer.id + "'s turn";
 }
 
 function pickFirstPlayer(){
@@ -67,6 +68,8 @@ function pickFirstPlayer(){
 		}
 	currentPlayer.elt.setAttribute('draggable',true);
 	currentPlayer.elt.classList.add('actif');
+	document.getElementById('playerTurn').innerHTML = currentPlayer.id + ' opens the game';
+	
 }
 
 var tiles = [];

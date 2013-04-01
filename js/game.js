@@ -38,7 +38,20 @@ function buildBoard() {
 		}
 		board.appendChild(line);
 	}
+	
+	tiles.forEach(function(tile) {
+		tile.elt.addEventListener('dragover', handleDragOver, false);
+		tile.elt.addEventListener('drop', handleDrop, false);
+	});
 
+	player1 = new Player("player1");
+	player2 = new Player("player2");
+	cimetary.innerHTML = '<div id="lastTile" class="tile"></div>';
+	
+	player1.elt.setAttribute('draggable',false);
+	player1.elt.classList.remove('actif');
+	player2.elt.setAttribute('draggable',false);
+	player2.elt.classList.remove('actif');
 }
 
 
@@ -184,17 +197,16 @@ function fourTilesMatch(tileElts){
 	return match;
 }
 
+function startGame(){
+	createTiles();
+	buildBoard();
+	pickFirstPlayer();
+}
+
 var tiles = [];
 var tilesTable = [];
 currentPlayer = '';
-player1 = new Player("player1");
-player2 = new Player("player2");
 
-
-createTiles();
-
-buildBoard();
-
-pickFirstPlayer();
+startGame();
 
 //tiles[0].elt.style.color = "white";

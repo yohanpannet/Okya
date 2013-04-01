@@ -45,7 +45,7 @@ function buildBoard() {
 	});
 
 	player1 = new Player("player1");
-	player2 = new Player("player2");
+	player2 = new PlayerIA("player2");
 	cimetary.innerHTML = '<div id="lastTile" class="tile"></div>';
 	
 	player1.elt.setAttribute('draggable',false);
@@ -67,17 +67,13 @@ function createTiles(){
 
 
 function switchPlayer(){
-	currentPlayer.elt.setAttribute('draggable',false);
-	currentPlayer.elt.classList.remove('actif');
-	
+	currentPlayer.turnStop();
 	if (currentPlayer === player1){
 		currentPlayer = player2;
 	} else {
 		currentPlayer = player1;
 	}
-	currentPlayer.elt.setAttribute('draggable',true);
-	currentPlayer.elt.classList.add('actif');
-	document.getElementById('playerTurn').innerHTML = currentPlayer.id + "'s turn";
+	currentPlayer.turnStart();
 }
 
 function pickFirstPlayer(){
@@ -86,10 +82,10 @@ function pickFirstPlayer(){
 		} else {
 			currentPlayer = player2;
 		}
-	currentPlayer.elt.setAttribute('draggable',true);
-	currentPlayer.elt.classList.add('actif');
-	document.getElementById('playerTurn').innerHTML = currentPlayer.id + ' opens the game';
-	
+	//currentPlayer.elt.setAttribute('draggable',true);
+	//currentPlayer.elt.classList.add('actif');
+	//document.getElementById('playerTurn').innerHTML = currentPlayer.id + ' opens the game';
+	currentPlayer.turnStart();
 }
 
 

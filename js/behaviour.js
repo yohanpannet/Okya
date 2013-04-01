@@ -62,17 +62,22 @@ function tileTaken(tileElt, playerID){
 	var flora = tileElt.getAttribute('flora');
 	//select next playble tiles
 	var nbPossibilities = 0;
+	//console.log(currentPlayer.name +' has taken : ' + fauna + ' : '+flora);
+	//console.log('Droppable tile are : ');
 	tiles.forEach(function(tile) {
 		
 		if (((tile.x == eval(fauna)) || (tile.y == eval(flora))) && tile.elt.getAttribute('taken') == "false"){
 			tile.elt.classList.add('droppable');
 			tile.elt.setAttribute('droppable',true);
 			nbPossibilities++;
+			//console.log(tile.x +' : '+tile.y);
+	
 		} else {
 			tile.elt.classList.remove('droppable');
 			tile.elt.setAttribute('droppable',false);
 		}
 	});
+		
 	if (checkVictory(tileElt, playerID, nbPossibilities) == true){
 		alert(playerID + ' Wins !');
 	} else {

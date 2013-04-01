@@ -209,4 +209,3 @@ currentPlayer = '';
 
 startGame();
 
-//tiles[0].elt.style.color = "white";

@@ -20,6 +20,15 @@ var Tile = function(x, y) {
 var Player = function(id){
 	var that = this;
 	that.id = id;
+	that.name = id;
 	that.elt = document.getElementById(id);
+	
 	return that;
 }
+
+var PlayerIA = function(id){
+	var that = new Player(id);
+	
+	return that;
+}
+

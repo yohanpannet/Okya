@@ -11,6 +11,7 @@
 	float: left;
 	background-color: #bbb;
 	border: 2px solid #666666;
+	border-radius: 10px;
 }
 .player{
   height: 100px;
@@ -26,16 +27,18 @@
   box-shadow: inset 0 0 3px #000;
   text-align: center;
   cursor: pointer;
+  opacity:0.6;
 }
 .player.actif{
 	border: 2px solid #000;
+	opacity:1;
 }
 .board {
   /*height: 416px;
   width: 416px;*/
   float: left;
   border: 2px solid #666666;
-  background-color: #ccc;
+  background-color: #ddd ;
   /*margin-right: 5px;*/
   -webkit-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -52,7 +55,7 @@
   width: 100px;
   float: left;
   border: 2px solid #666666;
-  background-color: #ccc;
+  background-color: #bbb;
   -webkit-border-radius: 10px;
   -ms-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -61,9 +64,11 @@
   -ms-box-shadow: inset 0 0 3px #000;
   box-shadow: inset 0 0 3px #000;
   text-align: center;
+  opacity: 0.8;
   /*cursor: pointer;*/
 }
 
 .tile.droppable{
   border: 2px solid #000;
+  opacity: 1;
 }

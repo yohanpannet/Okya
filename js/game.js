@@ -8,13 +8,13 @@ function buildBoard() {
 	//create tile index list for random pick up
 	tileIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 	
-	var board = document.getElementById("board");
-	board.innerHTML = '';
+	var board = $("#board");
+	board.empty();
 	for (var i = 0; i < 4; i++) {
 		tilesTable[i]=[];
-		var line = document.createElement('tr');
+		var line = $('<tr>');
 		for (var j = 0; j < 4; j++) {
-			var col = document.createElement('td');
+			var col = $('<td>');
 			//get random tile
 			randIndex = Math.floor(Math.random() * tileIndexes.length);
 			var randIndex = tileIndexes.splice(randIndex,1)[0];
@@ -22,26 +22,30 @@ function buildBoard() {
 			tilesTable[i][j]=tile;
 			tile.line = i;
 			tile.col = j;
-			var div = document.createElement('div');
-			div.setAttribute('class', 'tile');
-			div.setAttribute('droppable', true);
-			div.classList.add('droppable');
-			div.setAttribute('taken', false);
-			div.setAttribute('fauna', tile.x);
-			div.setAttribute('flora', tile.y);
-			div.setAttribute('line', i);
-			div.setAttribute('col', j);
-			div.innerHTML = '<header>' + tile.x + ' </header><header>' + tile.y + '</header>';
+			var div = $('<div>',{
+				'class': 'tile droppable',
+				'droppable': true,
+				'taken': false,
+				'fauna': tile.x,
+				'flora': tile.y,
+				'line':i,
+				'col':j
+			});
+			div.append('<header>' + tile.x + ' </header><header>' + tile.y + '</header>');
 			tile.elt = div;
-			col.appendChild(div);
-			line.appendChild(col);
+			col.append(div);
+
+			line.append(col);
 		}
-		board.appendChild(line);
+		//board.appendChild(line);
+		board.append(line);
 	}
 	
 	tiles.forEach(function(tile) {
-		tile.elt.addEventListener('dragover', handleDragOver, false);
-		tile.elt.addEventListener('drop', handleDrop, false);
+		//tile.elt.addEventListener('dragover', handleDragOver, false);
+		//tile.elt.addEventListener('drop', handleDrop, false);
+		tile.elt.on('dragover', handleDragOver);
+		tile.elt.on('drop', handleDrop);
 	});
 
 	player1 = new Player("player1");
@@ -94,8 +98,8 @@ function checkVictory(tileElt, playerID, nbPossibilities) {
 	if (nbPossibilities == 0) {
 		victory = true;
 	};
-	var line = eval(tileElt.getAttribute('line'));
-	var col = eval(tileElt.getAttribute('col'));
+	var line = eval(tileElt.attr('line'));
+	var col = eval(tileElt.attr('col'));
 	var tileElts = [];
 	//check line
 	for ( j = 0; j < 4; j++) {
@@ -184,9 +188,9 @@ function checkVictory(tileElt, playerID, nbPossibilities) {
 function fourTilesMatch(tileElts){
 	//take a 4 tileElt list and check if the 'color' match
 	var match = true;
-	var color = tileElts[0].elt.getAttribute('taken');
+	var color = tileElts[0].elt.attr('taken');
 	for (var i = 1; i<4;i++){
-		if (color != tileElts[i].elt.getAttribute('taken')){
+		if (color != tileElts[i].elt.attr('taken')){
 			match = false;
 		}
 	}

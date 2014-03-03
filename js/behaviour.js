@@ -19,7 +19,8 @@ function handleDragOver(e) {
 		// Necessary. Allows us to drop.
 	}
 
-	e.dataTransfer.dropEffect = 'move';
+	//e.dataTransfer.dropEffect = 'move';
+	e.originalEvent.dataTransfer.dropEffect = 'move';
 	// See the section on the DataTransfer object.
 
 	return false;
@@ -45,36 +46,37 @@ function handleDrop(e) {
 
 	if (droppable == "true") {
 		
-		tileTaken(this, e.dataTransfer.getData('PlayerId'));	
+		tileTaken($(this), e.originalEvent.dataTransfer.getData('PlayerId'));	
 	}
 
 }
 
 function tileTaken(tileElt, playerID){
-	var player = document.getElementById(playerID);
+	var player = $('#'+playerID);
 	
-	tileElt.style.backgroundColor = player.style.backgroundColor;
+	tileElt.css('backgroundColor', player.css('backgroundColor'));
 	cimetary.innerHTML = tileElt.innerHTML;
-	tileElt.setAttribute('droppable',false);
-	tileElt.setAttribute('taken',player.id);
+	tileElt.attr({'droppable':false,
+			'taken':player.attr('id')
+	});
 	//set next selectable tiles
-	var fauna = tileElt.getAttribute('fauna');
-	var flora = tileElt.getAttribute('flora');
+	var fauna = tileElt.attr('fauna');
+	var flora = tileElt.attr('flora');
 	//select next playble tiles
 	var nbPossibilities = 0;
 	//console.log(currentPlayer.name +' has taken : ' + fauna + ' : '+flora);
 	//console.log('Droppable tile are : ');
 	tiles.forEach(function(tile) {
 		
-		if (((tile.x == eval(fauna)) || (tile.y == eval(flora))) && tile.elt.getAttribute('taken') == "false"){
-			tile.elt.classList.add('droppable');
-			tile.elt.setAttribute('droppable',true);
+		if (((tile.x == eval(fauna)) || (tile.y == eval(flora))) && tile.elt.attr('taken') == "false"){
+			tile.elt.addClass('droppable');
+			tile.elt.attr('droppable',true);
 			nbPossibilities++;
 			//console.log(tile.x +' : '+tile.y);
 	
 		} else {
-			tile.elt.classList.remove('droppable');
-			tile.elt.setAttribute('droppable',false);
+			tile.elt.removeClass('droppable');
+			tile.elt.attr('droppable',false);
 		}
 	});
 		

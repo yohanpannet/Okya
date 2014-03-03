@@ -5,6 +5,9 @@
 flora = ["erable","cerisier","",""];
 fauna = ["sun","rain","autonm",""];
 
+attColor = ["blue","yellow","green","red"];
+attLetter = ['A','B','C','D'];
+
 var Tile = function(x, y) {
 	//x,y: [0..3]
 	var that = this;
@@ -12,7 +15,7 @@ var Tile = function(x, y) {
 	that.y = y;
 	that.line = "";
 	that.col = "";
-	that.elt="out";
+	that.elt="out";//jquery elt (selector)
 	return that;
 };
 
@@ -50,10 +53,10 @@ var PlayerIA = function(id){
 			while (dropable == "false"){
 				var randIndex = Math.floor(Math.random() * tiles.length);
 				tile = tiles[randIndex];
-				dropable = tile.elt.getAttribute('droppable');
+				dropable = tile.elt.attr('droppable');
 			}
 			tileTaken(tile.elt, that.id);
-		}, 5000);
+		}, 3000);
 		
 	};
 	return that;

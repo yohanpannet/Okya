@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset=utf-8>
+		<title>Okiya</title>
+		<link rel="stylesheet" href=".\css\game.css">
+	</head>
+<body>
+	<header id='header'>
+		Okiya
+	</header>
+	<button type="button" onclick="startNewGame()">New Game</button>
+	<div>
+	<h2 id="playerTurn" ></h2>
+	</div>
+	<div class="pBoard" id="pBoard">
+		<div class="player" id="player1" style="background-color: black" draggable="false"></div>
+		<div class="player" id="player2" style="background-color: red" draggable="false"></div>
+	</div>
+	<table class="board" id="boardDOM">
+	  
+	</table>
+	<div id="cimetary">
+		<div id="lastTile" class="tile"></div>
+	</div>
+	<script src=".\js\model.js"></script>
+	<script src=".\js\game2.js"></script>
+	<!-- <script src=".\js\behaviour.js"></script> -->
+	</body>
+</html>

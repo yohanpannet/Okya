@@ -1,0 +1,36 @@
+
+.prop10{
+	  background-color: green;
+	
+}
+
+.prop11{
+	background-color: sandybrown;
+}
+.prop12{
+	background-color: yellow;
+}
+
+.prop13{
+	background-color: blueviolet;
+}
+
+.prop20{
+	background-image: url(../svg/owl.svg);
+	background-size: 100% 100%; 
+}
+
+.prop21{
+	background-image: url(../svg/Bear.svg);
+	background-size: 100% 100%; 
+}
+
+.prop22{
+	background-image: url(../svg/Cat.svg);
+	background-size: 100% 100%; 
+}
+
+.prop23{
+	background-image: url(../svg/Monkey.svg);
+	background-size: 100% 100%; 
+}

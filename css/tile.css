@@ -1,4 +1,25 @@
 
+.tile {
+  height: 100px;
+  width: 100px;
+  float: left;
+  border: 2px solid #666666;
+  /*background-color: #bbb;*/
+  background-size: 100% 100%;
+  border-radius: 10px;
+  box-shadow: inset 0 0 3px #000;
+  text-align: center;
+  opacity: 0.8;
+  /*cursor: pointer;*/
+}
+
+
+.tile.droppable{
+  border: 2px solid #000;
+  opacity: 1;
+}
+
+
 .prop10{
 	  background-color: green;
 	
@@ -16,21 +37,18 @@
 }
 
 .prop20{
-	background-image: url(../svg/owl.svg);
-	background-size: 100% 100%; 
+	background-image: url(../svg/owl.svg); 
 }
 
 .prop21{
 	background-image: url(../svg/Bear.svg);
-	background-size: 100% 100%; 
 }
 
 .prop22{
 	background-image: url(../svg/Cat.svg);
-	background-size: 100% 100%; 
 }
 
 .prop23{
 	background-image: url(../svg/Monkey.svg);
-	background-size: 100% 100%; 
+background-size: 100% 100%; 
 }

@@ -78,7 +78,7 @@
       <path
          id="path3478"
          d="m 15.454482,21.608133 4.87901,25.876177 c -3.778648,6.361791 -5.924512,13.629688 -5.924512,21.345668 0,25.01683 22.513356,45.305092 50.271226,45.305092 27.757872,0 50.314794,-20.288261 50.314784,-45.305092 0,-7.474484 -2.05884,-14.518621 -5.61957,-20.735792 l 4.87901,-25.832614 -20.56154,9.540207 c -8.195927,-5.225134 -18.21698,-8.320455 -29.012684,-8.320455 -10.481235,0 -20.213468,2.890921 -28.272119,7.841266 L 15.454482,21.608133 z"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.97822046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+         style="fill:#ffffff;fill-opacity:0;fill-rule:nonzero;stroke:#000000;stroke-width:3.97822046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
       <path
          transform="matrix(1.9387847,0.8723032,-0.8723032,1.9387847,-50.299173,-95.028718)"
          d="m 76,48 c 0,2.209139 -1.790861,4 -4,4 -2.209139,0 -4,-1.790861 -4,-4 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"

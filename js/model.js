@@ -17,7 +17,7 @@ function Board(){
 	this.discardPile = [];
 	this.tiles = [];
 	this.player1 = '';
-	thisplayer2 = '';
+	this.player2 = '';
 	
 	this.createTiles = function(){
 		for (var i = 0; i < 4; i++) { 

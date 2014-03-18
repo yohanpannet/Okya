@@ -1,6 +1,6 @@
-function BoardView (){
+function BoardView(){
 	
-	function buildView(modelBoard){
+	this.buildView = function (modelBoard){
 		
 		var boardDOM = $("#boardDOM");
 		for (var i = 0; i < 4; i++) {

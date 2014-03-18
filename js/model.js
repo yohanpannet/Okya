@@ -10,11 +10,14 @@ function Tile(x, y) {
 	this.line = "";
 	this.col = "";
 	this.elt="out";
+	this.owner='';
 };
 
 function Board(){
 	this.discardPile = [];
 	this.tiles = [];
+	this.player1 = '';
+	thisplayer2 = '';
 	
 	this.createTiles = function(){
 		for (var i = 0; i < 4; i++) { 
@@ -25,7 +28,7 @@ function Board(){
 		}
 	};
 	
-	this.setBoard = function(){
+	this.setBoardElements = function(){
 		//create tile index list for random pick up
 		var tileIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 		for (var i = 0; i < 4; i++) {
@@ -39,8 +42,28 @@ function Board(){
 				tile.col = j;
 			}
 		}
+		player1 = new Player("player1");
+		player2 = new PlayerIA("player2");
 	};
+	
+	function tileTaken(tile, player){
+		
+		this.discardPile.unshift(tile);
+		tile.owner = player;
+		
+	}
 	
 };
 
 Board.prototype = Array.prototype;
+
+function Player(id){
+	this.id = id;
+};
+
+
+function PlayerIA(){
+	
+};
+
+PlayerIA.prototype = Player.prototype;

@@ -1,34 +1,12 @@
-var party='';
-
-function startNewGame(){
-	party = new Party().startGame();
+function BoardView (){
 	
-}
-
-var Party = function(){
-	this.board='';
-	this.tiles = [];
-	this.discardPile = [];
-	this.player1='';
-	this.player2='';
-	this.currentPlayer='';
-	
-	this.startGame = function(){
-		this.board = new Board();
-		this.board.createTiles();
-		this.board.setBoardElements();
-		this.buildView();
-		//pickFirstPlayer();
-	};
-	
-	
-	
-	this.buildView = function(){
+	function buildView(modelBoard){
+		
 		var boardDOM = $("#boardDOM");
 		for (var i = 0; i < 4; i++) {
 			var line = $('<tr>');
 			for (var j = 0; j < 4; j++) {
-				var tile = this.board[i][j];
+				var tile = modelBoard[i][j];
 				var col = $('<td>');
 				var div = $('<div>',{
 					'class': 'tile droppable '+
@@ -49,7 +27,5 @@ var Party = function(){
 			//board.appendChild(line);
 			boardDOM.append(line);
 		}
-	}	
-	
-};
-
+	}
+}

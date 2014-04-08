@@ -14,17 +14,13 @@ function BoardView(){
 					'id':'tile'+i+j,
 					'droppable': true,
 					'taken': false,
-					'fauna': tile.prop1,
-					'flora': tile.prop2,
 					'line':i,
 					'col':j
 				});
-				//div.append('<header>' + tile.prop1 + ' </header><header>' + tile.prop2 + '</header>');
 				col.append(div);
 
 				line.append(col);
 			}
-			//board.appendChild(line);
 			boardDOM.append(line);
 		}
 	}

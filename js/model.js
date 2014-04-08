@@ -10,7 +10,7 @@ function Tile(x, y) {
 	this.line = "";
 	this.col = "";
 	this.elt="out";
-	this.owner='';
+	this.owner=undefined;
 };
 
 function Board(){
@@ -29,6 +29,8 @@ function Board(){
 	};
 	
 	this.setBoardElements = function(){
+		//put the tile on the board
+		
 		//create tile index list for random pick up
 		var tileIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 		for (var i = 0; i < 4; i++) {
@@ -46,11 +48,8 @@ function Board(){
 		player2 = new PlayerIA("player2");
 	};
 	
-	function tileTaken(tile, player){
-		
-		this.discardPile.unshift(tile);
-		tile.owner = player;
-		
+	this.getTile = function(x,y){
+		return this[x][y];
 	}
 	
 };

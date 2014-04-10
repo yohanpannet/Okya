@@ -15,6 +15,8 @@ function GameController(){
 		this.boardView.buildView(this.board);
 		
 		this.setControls();
+		
+		this.pick1stPlayer();
 	};
 	
 	this.setControls = function(){
@@ -24,18 +26,41 @@ function GameController(){
 		
 	};
 	
+	this.pick1stPlayer = function(){
+		this.currentPlayer = (Math.random()>0.5)?this.board.player1:this.board.player2;
+		console.log(this.currentPlayer.id);
+	};
+	
 	var tilePicked = function(){
 		//Replace tile by an 'active player' token
 		//put it in the discard pile
 		//Set next selectable tiles
 		//Check victory
+		//switch players
 		
 		console.log('clicked! '+$(this).attr('col')+ '  '+$(this).attr('line'))
 		
-		that.tileTaken(that.board.getTile($(this).attr('col'), $(this).attr('line')),that.currentPlayer);
+		that.tileTaken(that.board.getTile(
+				$(this).attr('col'),
+				$(this).attr('line')
+					),that.currentPlayer);
 		
-		$(this).removeClass().addClass('player');
+		$('#lastTile').attr('class',
+				$(this).attr('class'));
+		$(this).removeClass().addClass(
+				$('#'+that.currentPlayer.id).attr('class'));
+		that.switchPlayer();
 	};
+	
+	this.switchPlayer = function(){
+		//this.currentPlayer.turnStop();
+		if (this.currentPlayer === this.board.player1){
+			this.currentPlayer = this.board.player2;
+		} else {
+			this.currentPlayer = this.board.player1;
+		}
+		this.currentPlayer.turnStart();
+	}
 	
 	this.tileTaken = function(tile, player){
 		this.board.discardPile.unshift(tile);

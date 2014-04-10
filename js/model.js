@@ -44,8 +44,8 @@ function Board(){
 				tile.col = j;
 			}
 		}
-		player1 = new Player("player1");
-		player2 = new PlayerIA("player2");
+		this.player1 = new Player("player1");
+		this.player2 = new PlayerIA("player2");
 	};
 	
 	this.getTile = function(x,y){
@@ -61,8 +61,8 @@ function Player(id){
 };
 
 
-function PlayerIA(){
-	
+function PlayerIA(id){
+	this.id = id;
 };
 
 PlayerIA.prototype = Player.prototype;

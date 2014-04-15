@@ -58,6 +58,7 @@ Board.prototype = Array.prototype;
 
 function Player(id){
 	this.id = id;
+	
 };
 
 

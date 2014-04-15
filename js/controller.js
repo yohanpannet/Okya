@@ -38,17 +38,27 @@ function GameController(){
 		//Check victory
 		//switch players
 		
-		console.log('clicked! '+$(this).attr('col')+ '  '+$(this).attr('line'))
+		// get the 2 attributes: 
+		console.log('clicked! '+$(this).attr('col')+ '  '+$(this).attr('line'));
 		
+		//Replace tile on model & put in discard
 		that.tileTaken(that.board.getTile(
 				$(this).attr('col'),
 				$(this).attr('line')
 					),that.currentPlayer);
-		
+		//replace tile on view & put in discard
 		$('#lastTile').attr('class',
 				$(this).attr('class'));
 		$(this).removeClass().addClass(
 				$('#'+that.currentPlayer.id).attr('class'));
+		
+		//Set next selectable tiles
+		$('.tile').unbind('tap');
+		
+		//Check victory
+		
+		
+		//switch player
 		that.switchPlayer();
 	};
 	
@@ -59,7 +69,7 @@ function GameController(){
 		} else {
 			this.currentPlayer = this.board.player1;
 		}
-		this.currentPlayer.turnStart();
+		//this.currentPlayer.turnStart();
 	}
 	
 	this.tileTaken = function(tile, player){

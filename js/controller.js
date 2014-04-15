@@ -47,13 +47,15 @@ function GameController(){
 				$(this).attr('line')
 					),that.currentPlayer);
 		//replace tile on view & put in discard
-		$('#lastTile').attr('class',
-				$(this).attr('class'));
+		$('#lastTile').attr('prop1',$(this).attr('prop1'))
+			.attr('prop2',$(this).attr('prop2'));
+		$('.tile').unbind('tap');
 		$(this).removeClass().addClass(
 				$('#'+that.currentPlayer.id).attr('class'));
 		
 		//Set next selectable tiles
-		$('.tile').unbind('tap');
+		$('.tile').filter('[prop1='+$(this).attr('prop1')+']').bind('tap',tilePicked);
+		$('.tile').filter('[prop2='+$(this).attr('prop2')+']').bind('tap',tilePicked);
 		
 		//Check victory
 		

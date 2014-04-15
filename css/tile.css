@@ -20,35 +20,35 @@
 }
 
 
-.prop10{
+.tile[prop1='0']{
 	  background-color: green;
 	
 }
 
-.prop11{
+.tile[prop1='1']{
 	background-color: sandybrown;
 }
-.prop12{
+.tile[prop1='2']{
 	background-color: yellow;
 }
 
-.prop13{
+.tile[prop1='3']{
 	background-color: blueviolet;
 }
 
-.prop20{
+.tile[prop2='0']{
 	background-image: url(../svg/iconmonstr-time-11-icon.svg); 
 }
 
-.prop21{
+.tile[prop2='1']{
 	background-image: url(../svg/iconmonstr-beer-4-icon.svg);
 }
 
-.prop22{
+.tile[prop2='2']{
 	background-image: url(../svg/iconmonstr-rocket-2-icon.svg);
 }
 
-.prop23{
+.tile[prop2='3']{
 	background-image: url(../svg/iconmonstr-coffee-9-icon.svg);
 background-size: 100% 100%; 
 }

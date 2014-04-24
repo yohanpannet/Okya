@@ -52,6 +52,45 @@ function Board(){
 		return this[x][y];
 	}
 	
+	this.tileTaken = function(tile, player){
+		this.discardPile.unshift(tile);
+		tile.owner = player;
+		
+	};
+	
+	this.checkVictory = function(tile, player){
+		//count 'takable' tiles
+		var nbTakable = 0;
+		this.tiles.forEach(function(elt){
+			if ((elt.owner===undefined)&&(elt.prop1 == tile.prop1 || elt.prop2 == tile.prop2)){
+				nbTakable++;
+			}
+		});
+		if (nbTakable == 0) {return true;}
+		
+		//check group of 4 tiles: there is 8 possible groups for a tile (max)
+		//some of the following combinaisons might get 'out of bound' but it is manage...
+		var col = tile.col;
+		var line = tile.line;
+		var isGroup =
+		this.fourTilesMatch([this[line][0],this[line][1],this[line][2],this[line][3]])||
+		this.fourTilesMatch([this[0][col],this[1][col],this[2][col],this[3][col]]);
+		//console.log('isGroup = '+isGroup);
+		return isGroup;
+	};
+	
+	//take a 4 tile list (might contains undefined) and check if the owner match
+	this.fourTilesMatch = function(tileElts){
+		//if 1st tile exists, owner = its owner, else owner = undefined 
+		var owner = tileElts[0]!=undefined?tileElts[0].owner:undefined;
+		var match = true;
+		tileElts.forEach(function(elt){
+			if (elt === undefined) {match = false};
+			if (elt.owner!=owner) {match = false};
+			});
+		return match;
+	}
+	
 };
 
 Board.prototype = Array.prototype;

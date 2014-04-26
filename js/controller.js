@@ -5,11 +5,14 @@
 function GameController(){
 	this.board='';
 	this.boardView='';
+	this.player1 = '';
+	this.player2 = '';
 	this.currentPlayer='';
 	that = this;
 	this.newGame = function(){
 		this.board = new Board();
 		this.board.createTiles();
+		this.createPlayers();
 		this.board.setBoardElements();
 		this.boardView = new BoardView();
 		this.boardView.buildView(this.board);
@@ -26,8 +29,13 @@ function GameController(){
 		
 	};
 	
+	this.createPlayers = function(){
+		this.player1 = new Player("player1");
+		this.player2 = new PlayerIA("player2");
+	};
+	
 	this.pick1stPlayer = function(){
-		this.currentPlayer = (Math.random()>0.5)?this.board.player1:this.board.player2;
+		this.currentPlayer = (Math.random()>0.5)?this.player1:this.player2;
 		console.log(this.currentPlayer.id);
 	};
 	
@@ -70,11 +78,28 @@ function GameController(){
 	
 	this.switchPlayer = function(){
 		//this.currentPlayer.turnStop();
-		if (this.currentPlayer === this.board.player1){
-			this.currentPlayer = this.board.player2;
+		if (this.currentPlayer === this.player1){
+			this.currentPlayer = this.player2;
 		} else {
-			this.currentPlayer = this.board.player1;
+			this.currentPlayer = this.player1;
 		}
-		//this.currentPlayer.turnStart();
+		this.currentPlayer.turnStart();
+	}
+};
+
+
+function Player(id){
+	this.id = id;
+	this.turnStart = function(){
+		console.log('turn start for '+this.id);
+	}
+	
+};
+
+
+function PlayerIA(id){
+	this.id = id;
+	this.turnStart = function(){
+		console.log('turn start for '+this.id);
 	}
 };

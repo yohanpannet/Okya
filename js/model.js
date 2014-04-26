@@ -16,8 +16,6 @@ function Tile(x, y) {
 function Board(){
 	this.discardPile = [];
 	this.tiles = [];
-	this.player1 = '';
-	this.player2 = '';
 	
 	this.createTiles = function(){
 		for (var i = 0; i < 4; i++) { 
@@ -44,8 +42,7 @@ function Board(){
 				tile.col = j;
 			}
 		}
-		this.player1 = new Player("player1");
-		this.player2 = new PlayerIA("player2");
+		
 	};
 	
 	this.getTile = function(x,y){
@@ -114,14 +111,4 @@ function Board(){
 
 Board.prototype = Array.prototype;
 
-function Player(id){
-	this.id = id;
-	
-};
 
-
-function PlayerIA(id){
-	this.id = id;
-};
-
-PlayerIA.prototype = Player.prototype;

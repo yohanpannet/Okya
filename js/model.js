@@ -73,8 +73,28 @@ function Board(){
 		var col = tile.col;
 		var line = tile.line;
 		var isGroup =
-		this.fourTilesMatch([this[line][0],this[line][1],this[line][2],this[line][3]])||
-		this.fourTilesMatch([this[0][col],this[1][col],this[2][col],this[3][col]]);
+		this.fourTilesMatch([this[line][0],this[line][1],this[line][2],this[line][3]])|| //line
+		this.fourTilesMatch([this[0][col],this[1][col],this[2][col],this[3][col]])|| //column
+		// 4 squares
+		(!(line<3&&col<3)?false:
+			this.fourTilesMatch(
+					[this[line][col], this[line][col+1], this[line+1][col], this[line+1][col+1]]))|| 
+		(!(line<3&&col>0)?false:
+			this.fourTilesMatch(
+					[this[line][col-1], this[line][col], this[line+1][col-1], this[line+1][col]]))||
+		(!(line>0&&col<3)?false:
+			this.fourTilesMatch(
+					[this[line-1][col], this[line-1][col+1], this[line][col], this[line][col+1]]))||
+		(!(line>0&&col>0)?false:
+			this.fourTilesMatch(
+					[this[line-1][col-1], this[line-1][col], this[line][col-1], this[line][col]]))||
+		//2 diagonals
+		(!(line==col)?false:
+			this.fourTilesMatch(
+					[this[0][0], this[1][1], this[2][2], this[3][3]]))||			
+		(!((line+col)==3)?false:
+			this.fourTilesMatch(
+					[this[0][3], this[1][2], this[2][1], this[3][0]]));
 		//console.log('isGroup = '+isGroup);
 		return isGroup;
 	};
@@ -85,8 +105,7 @@ function Board(){
 		var owner = tileElts[0]!=undefined?tileElts[0].owner:undefined;
 		var match = true;
 		tileElts.forEach(function(elt){
-			if (elt === undefined) {match = false};
-			if (elt.owner!=owner) {match = false};
+			if ((elt === undefined)||(elt.owner!=owner)) {match = false};
 			});
 		return match;
 	}

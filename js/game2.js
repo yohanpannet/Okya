@@ -1,7 +1,7 @@
 var party='';
 
 function startNewGame(){
-	new GameController().newGame();
+	gameController.newGame();
 	
 }
 

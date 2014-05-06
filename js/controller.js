@@ -1,42 +1,27 @@
 
-
-
-
-function GameController(){
-	this.board='';
-	this.boardView='';
-	this.player1 = '';
-	this.player2 = '';
-	this.currentPlayer='';
-	that = this;
-	this.newGame = function(){
-		this.board = new Board();
-		this.board.createTiles();
-		this.createPlayers();
-		this.board.setBoardElements();
-		this.boardView = new BoardView();
-		this.boardView.buildView(this.board);
-		
-		this.setControls();
-		
-		this.pick1stPlayer();
-	};
+var gameController = (function(){
+	var board='';
+	var boardView='';
+	var player1 = '';
+	var player2 = '';
+	var currentPlayer='';
+	//console.log('1 st call');
 	
-	this.setControls = function(){
+	var initControls = function(){
 		$('.tile')
-			.not('#tile11,#tile12,#tile21,#tile22,#lastTile')
-			.bind('tap',tilePicked);
-		
+		.not('#tile11,#tile12,#tile21,#tile22,#lastTile')
+		.bind('tap',tilePicked);
+	
 	};
 	
-	this.createPlayers = function(){
-		this.player1 = new Player("player1");
-		this.player2 = new PlayerIA("player2");
+	var createPlayers = function(){
+		player1 = new Player("player1");
+		player2 = new PlayerIA("player2");
 	};
 	
-	this.pick1stPlayer = function(){
-		this.currentPlayer = (Math.random()>0.5)?this.player1:this.player2;
-		console.log(this.currentPlayer.id);
+	var pick1stPlayer = function(){
+		currentPlayer = (Math.random()>0.5)?player1:player2;
+		console.log(currentPlayer.id);
 	};
 	
 	var tilePicked = function(){
@@ -46,7 +31,7 @@ function GameController(){
 		//Check victory
 		//switch players
 		
-		var tile = that.board.getTile(
+		var tile = board.getTile(
 				$(this).attr('line'),
 				$(this).attr('col')
 					);
@@ -54,17 +39,17 @@ function GameController(){
 		console.log('clicked! '+$(this).attr('col')+ '  '+$(this).attr('line'));
 		
 		//Replace tile on model & put in discard
-		that.board.tileTaken(tile,that.currentPlayer);
+		board.tileTaken(tile,currentPlayer);
 		//replace tile on view & put in discard
 		$('#lastTile').attr('prop1',$(this).attr('prop1'))
 			.attr('prop2',$(this).attr('prop2'));
 		$('.tile').unbind('tap');
 		$(this).removeClass().addClass(
-				$('#'+that.currentPlayer.id).attr('class'));
+				$('#'+currentPlayer.id).attr('class'));
 		
 		//Check victory
-		if (that.board.checkVictory(tile, that.currentPlayer)){
-			console.log(that.currentPlayer+" Won!");
+		if (board.checkVictory(tile, currentPlayer)){
+			console.log(currentPlayer+" Won!");
 		};
 		
 		//Set next selectable tiles
@@ -73,19 +58,38 @@ function GameController(){
 		
 		
 		//switch player
-		that.switchPlayer();
+		switchPlayer();
 	};
 	
-	this.switchPlayer = function(){
+	switchPlayer = function(){
 		//this.currentPlayer.turnStop();
-		if (this.currentPlayer === this.player1){
-			this.currentPlayer = this.player2;
+		if (currentPlayer === player1){
+			currentPlayer = player2;
 		} else {
-			this.currentPlayer = this.player1;
+			currentPlayer = player1;
 		}
-		this.currentPlayer.turnStart();
-	}
-};
+		currentPlayer.turnStart();
+	};
+	
+	return{
+		newGame : function(){
+			console.log('new game');
+			//TO DO : New to clean previous board!!
+			board = new Board();
+			board.createTiles();
+			createPlayers();
+			board.setBoardElements();
+			boardView = new BoardView();
+			boardView.buildView(board);
+			
+			initControls();
+			
+			pick1stPlayer();
+		}
+	};
+})();
+
+
 
 
 function Player(id){

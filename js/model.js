@@ -10,6 +10,7 @@ function Tile(x, y) {
 	this.line = "";
 	this.col = "";
 	this.elt="out";
+	this.takable = true;//will be deactivated at initialisation (if needed)
 	this.owner=undefined;
 };
 
@@ -42,18 +43,44 @@ function Board(){
 				tile.col = j;
 			}
 		}
-		
+		this.setTakableTiles();
 	};
 	
 	this.getTile = function(x,y){
 		return this[x][y];
-	}
+	};
 	
 	this.tileTaken = function(tile, player){
 		this.discardPile.unshift(tile);
 		tile.owner = player;
-		
+		this.setTakableTiles();
 	};
+	
+	this.setTakableTiles = function(){
+		if (this.discardPile.length == 0){
+			this[1][1].takable = false;
+			this[1][2].takable = false;
+			this[2][1].takable = false;
+			this[2][2].takable = false;
+		} else {
+			var lastTile = this.discardPile[0];
+			//console.log(lastTile.prop1 + '  '+lastTile.prop2);
+			this.tiles.forEach(function(elt){
+				if ((elt.owner === undefined)&&((elt.prop1 == lastTile.prop1)||(elt.prop2 == lastTile.prop2))){
+					elt.takable = true;
+				}else{
+					elt.takable = false;
+				}
+			});
+		}
+	}
+	
+	this.getTakableTiles = function(){
+		return this.tiles.reduce(function(ret, elt){
+			if (elt.takable){ret.push(elt);}
+			return ret;
+		},[]);
+	}
 	
 	this.checkVictory = function(tile, player){
 		//count 'takable' tiles

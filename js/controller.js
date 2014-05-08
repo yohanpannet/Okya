@@ -7,12 +7,6 @@ var gameController = (function(){
 	var currentPlayer='';
 	//console.log('1 st call');
 	
-	var initControls = function(){
-		$('.tile')
-		.not('#tile11,#tile12,#tile21,#tile22,#lastTile')
-		.bind('tap',tilePicked);
-	
-	};
 	
 	var createPlayers = function(){
 		player1 = new Player("player1");
@@ -22,43 +16,7 @@ var gameController = (function(){
 	var pick1stPlayer = function(){
 		currentPlayer = (Math.random()>0.5)?player1:player2;
 		console.log(currentPlayer.id);
-	};
-	
-	var tilePicked = function(){
-		//Replace tile by an 'active player' token
-		//put it in the discard pile
-		//Set next selectable tiles
-		//Check victory
-		//switch players
-		
-		var tile = board.getTile(
-				$(this).attr('line'),
-				$(this).attr('col')
-					);
-		// get the 2 attributes: 
-		console.log('clicked! '+$(this).attr('col')+ '  '+$(this).attr('line'));
-		
-		//Replace tile on model & put in discard
-		board.tileTaken(tile,currentPlayer);
-		//replace tile on view & put in discard
-		$('#lastTile').attr('prop1',$(this).attr('prop1'))
-			.attr('prop2',$(this).attr('prop2'));
-		$('.tile').unbind('tap');
-		$(this).removeClass().addClass(
-				$('#'+currentPlayer.id).attr('class'));
-		
-		//Check victory
-		if (board.checkVictory(tile, currentPlayer)){
-			console.log(currentPlayer+" Won!");
-		};
-		
-		//Set next selectable tiles
-		$('.tile').filter('[prop1='+$(this).attr('prop1')+']').bind('tap',tilePicked);
-		$('.tile').filter('[prop2='+$(this).attr('prop2')+']').bind('tap',tilePicked);
-		
-		
-		//switch player
-		switchPlayer();
+		currentPlayer.turnStart();
 	};
 	
 	switchPlayer = function(){
@@ -72,6 +30,9 @@ var gameController = (function(){
 	};
 	
 	return{
+		getBoard : function(){
+			return board;
+		},
 		newGame : function(){
 			console.log('new game');
 			//TO DO : New to clean previous board!!
@@ -82,22 +43,65 @@ var gameController = (function(){
 			boardView = new BoardView();
 			boardView.buildView(board);
 			
-			initControls();
+			//initControls();
 			
 			pick1stPlayer();
+		},
+		chooseTile : function(row, col){
+			//Replace tile by an 'active player' token
+			//put it in the discard pile
+			//Set next selectable tiles
+			//Check victory
+			//switch players
+				
+			var tile = board.getTile(row,col);
+			// get the 2 attributes: 
+			//Replace tile on model & put in discard
+			board.tileTaken(tile,currentPlayer);
+			
+			//replace tile on view & put in discard
+			$('#lastTile').attr('prop1',tile.prop1)
+				.attr('prop2',tile.prop2);
+			$('#tile'+tile.line+tile.col).removeClass().addClass(
+					$('#'+currentPlayer.id).attr('class'));
+			
+			//Check victory
+			if (board.checkVictory(tile, currentPlayer)){
+				console.log(currentPlayer+" Won!");
+			};
+			
+			//Set next selectable tiles
+			//$('.tile').filter('[prop1='+$(this).attr('prop1')+']').bind('tap',tilePicked);
+			//$('.tile').filter('[prop2='+$(this).attr('prop2')+']').bind('tap',tilePicked);
+			
+			currentPlayer.turnEnd();
+			//switch player
+			switchPlayer();
 		}
 	};
 })();
 
 
-
+var tileClicked = function(){
+	$(this).unbind('tap',tileClicked);
+	gameController.chooseTile($(this).attr('line'),	$(this).attr('col'));
+};
 
 function Player(id){
 	this.id = id;
 	this.turnStart = function(){
 		console.log('turn start for '+this.id);
+		//make the eligible tiles 'clickable'
+		//tiles' id are 'tile' + row number + col number.
+		gameController.getBoard().getTakableTiles().forEach(function(elt){
+			$('#tile'+elt.line+elt.col).bind('tap',tileClicked);
+		});
+		
 	}
 	
+	this.turnEnd = function(){
+		$('.tile').unbind('tap',tileClicked);
+	}
 };
 
 
@@ -105,5 +109,17 @@ function PlayerIA(id){
 	this.id = id;
 	this.turnStart = function(){
 		console.log('turn start for '+this.id);
+		setTimeout(function(){
+			//pick a random dropable tile
+			var board = gameController.getBoard();
+			var possibilities = board.getTakableTiles();
+			var randIndex = Math.floor(Math.random() * possibilities.length);
+			var chosenTile = possibilities[randIndex]
+			gameController.chooseTile(chosenTile.line, chosenTile.col);
+		}, 2000);
+	}
+	
+	this.turnEnd = function(){
+		
 	}
 };

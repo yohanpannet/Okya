@@ -63,7 +63,7 @@ var gameController = (function(){
 			$('#lastTile').attr('prop1',tile.prop1)
 				.attr('prop2',tile.prop2);
 			$('#tile'+tile.line+tile.col).removeClass().addClass(
-					$('#'+currentPlayer.id).attr('class'));
+					$('#'+currentPlayer.id).attr('class')).addClass('ui-block-b');
 			
 			//Check victory
 			if (board.checkVictory(tile, currentPlayer)){

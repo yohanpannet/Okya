@@ -3,13 +3,13 @@ function BoardView(){
 	this.buildView = function (modelBoard){
 		
 		var boardDOM = $("#boardDOM");
+		boardDOM.empty();
+		$("#lastTile").removeAttr('prop1').removeAttr('prop2');
 		for (var i = 0; i < 4; i++) {
-			var line = $('<tr>');
 			for (var j = 0; j < 4; j++) {
 				var tile = modelBoard[i][j];
-				var col = $('<td>');
 				var div = $('<div>',{
-					'class': 'tile',
+					'class': 'tile ui-block-b',
 						//+'prop1'+tile.prop1+' prop2'+tile.prop2,
 					'id':'tile'+i+j,
 					'taken': false,
@@ -18,11 +18,9 @@ function BoardView(){
 					'line':i,
 					'col':j
 				});
-				col.append(div);
+				boardDOM.append(div);
 
-				line.append(col);
 			}
-			boardDOM.append(line);
 		}
 	}
 }

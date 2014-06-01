@@ -12,9 +12,8 @@ body {
 
 .pBoard{
 	
-	width: 100%;
-  height: 0;
-  padding-bottom: 100%;
+	width: 100vw;
+	 height: 25vw;
 	float: left;
 	background-color: #bbb;
 	border: 2px solid #666666;
@@ -25,11 +24,10 @@ body {
 .board {
   width: 100vw;
   height: 100vw;
-  float: left;
   border: 2px solid #666666;
   background-color: #ddd ;
   /*margin-right: 5px;*/
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: inset 0 0 3px #000;
   text-align: center;
   /*cursor: move;*/

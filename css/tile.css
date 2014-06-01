@@ -59,14 +59,14 @@
 }
 
 .tile[prop2='1']{
-	background-image: url(../svg/iconmonstr-beer-4-icon.svg);
+	background-image: url(../svg/iconmonstr-infinit-icon.svg);
 }
 
 .tile[prop2='2']{
-	background-image: url(../svg/iconmonstr-rocket-2-icon.svg);
+	background-image: url(../svg/iconmonstr-gear-icon.svg);
 }
 
 .tile[prop2='3']{
-	background-image: url(../svg/iconmonstr-coffee-9-icon.svg);
+	background-image: url(../svg/iconmonstr-star-5-icon.svg);
 background-size: 100% 100%; 
 }

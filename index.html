@@ -27,12 +27,16 @@
 			<div id="lastTile" class="tile"></div>
 		</div>
 		<a href="#pagestart">Start page</a>
-
-
+		<button type="button" data-inline="true" onclick="startNewGame()">tmp restart</button>
+		
 		<div class="pBoard" id="pBoard">
 			<div class="player player1" id="player1" draggable="false"></div>
 			<div class="player player2" id="player2" draggable="false"></div>
 		</div>
+	</div>
+	
+	<div data-role="popup" id="popupEndGame">
+		<p>End game.<p>
 	</div>
 
 	<script src=".\js\model.js"></script>

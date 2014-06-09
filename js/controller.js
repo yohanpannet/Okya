@@ -1,5 +1,5 @@
 
-var gameController = (function(){
+var gameController = (function (){
 	var board='';
 	var boardView='';
 	var player1 = '';
@@ -68,6 +68,7 @@ var gameController = (function(){
 			//Check victory
 			if (board.checkVictory(tile, currentPlayer)){
 				console.log(currentPlayer+" Won!");
+				$("#popupEndGame").popup("open")
 			};
 			
 			//Set next selectable tiles

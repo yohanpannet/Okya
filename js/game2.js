@@ -6,4 +6,7 @@ function startNewGame(){
 	gameController.newGame();
 }
 
+//init the pop...
+$("#popupEndGame").popup()
+
 

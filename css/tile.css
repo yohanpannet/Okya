@@ -1,5 +1,5 @@
 
-.tile ,.player{
+.tile ,.player, .gameBtn{
   height: 25vw;
   width: 25vw;
   float: left;

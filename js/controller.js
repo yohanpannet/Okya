@@ -29,6 +29,10 @@ var gameController = (function (){
 		currentPlayer.turnStart();
 	};
 	
+	endGame = function(){
+		$('.pBoard').toggle();
+	}
+	
 	return{
 		getBoard : function(){
 			return board;
@@ -67,17 +71,16 @@ var gameController = (function (){
 			
 			//Check victory
 			if (board.checkVictory(tile, currentPlayer)){
-				console.log(currentPlayer+" Won!");
-				$("#popupEndGame").popup("open")
-			};
+				console.log(currentPlayer+" Wins!");
+				endGame();
+				$("#winningText").text(currentPlayer.id+" Won!");
+			}
+			else{
+				currentPlayer.turnEnd();
+				//switch player
+				switchPlayer();
+			}
 			
-			//Set next selectable tiles
-			//$('.tile').filter('[prop1='+$(this).attr('prop1')+']').bind('tap',tilePicked);
-			//$('.tile').filter('[prop2='+$(this).attr('prop2')+']').bind('tap',tilePicked);
-			
-			currentPlayer.turnEnd();
-			//switch player
-			switchPlayer();
 		}
 	};
 })();

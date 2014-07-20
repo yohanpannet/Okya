@@ -35,9 +35,10 @@
 		</div>
 		<div class="pBoard" id="endGameDiv" style='display:none'>
 		    <!-- <p id="winningText">End game.<p> -->
-			<div class="gameBtn">R</div>
-			<button type="button" data-inline="true" onclick="startNewGame()">New Game</button>
-			<p><a href="#pagestart" class="ui-btn ui-shadow ui-corner-all ui-btn-up-c">Main Menu</a></p>
+			<div class="gameBtn" onclick="startNewGame()"
+				style="background-image: url(svg/iconmonstr-undo-2-icon.svg)"></div>
+			<div class="gameBtn" onclick='window.location.href = "#pagestart";'
+				style="background-image: url(svg/iconmonstr-home-4-icon.svg)"></div>
 		</div>
 	</div>
 	

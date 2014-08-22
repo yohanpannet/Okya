@@ -12,8 +12,28 @@
 </head>
 <body>
 	<div data-role="page" id="pagestart">
+		<div class="player player1" id="player1Picker" ></div>
+		<div class="ui-field-contain">
+		  <fieldset data-role="controlgroup" data-type="horizontal">
+		    <legend>Player 1</legend>
+		    <input type="radio" name="radio-P1" id="radio-P1-1" value="human" checked="checked">
+		    <label for="radio-P1-1">human</label>
+		    <input type="radio" name="radio-P1" id="radio-P1-2" value="IA" >
+		    <label for="radio-P1-2">IA</label>
+		  </fieldset>
+		</div>
+		<div class="player player2" id="player2Picker" ></div>
+		<div class="ui-field-contain">
+		  <fieldset data-role="controlgroup" data-type="horizontal">
+		    <legend>Player 2</legend>
+		    <input type="radio" name="radio-P2" id="radio-P2-1" value="human" >
+		    <label for="radio-P2-1">human</label>
+		    <input type="radio" name="radio-P2" id="radio-P2-2" value="IA" checked="checked">
+		    <label for="radio-P2-2">IA</label>
+		  </fieldset>
+		</div>
 		<div data-role="main" class="ui-content">
-			<button type="button" onclick="startNewGame()">New Game</button>
+			<button type="button" onclick="startNewGame()">Start Game</button>
 			<a href="#pagegame">Go to Page Two</a>
 		</div>
 	</div>

@@ -9,8 +9,27 @@ var gameController = (function (){
 	
 	
 	var createPlayers = function(){
-		player1 = new Player("player1");
-		player2 = new PlayerIA("player2");
+		//pick the players profile according to the selected radio on home page
+		player1Type = $('input:radio[name=radio-P1]:checked').val();
+		player2Type = $('input:radio[name=radio-P2]:checked').val();
+
+		switch(player1Type){
+		case 'human':
+			player1 = new Player("player1");
+			break;
+		case 'IA':
+			player1 = new PlayerIA("player1");
+			break;
+		}
+		
+		switch(player2Type){
+		case 'human':
+			player2 = new Player("player2");
+			break;
+		case 'IA':
+			player2 = new PlayerIA("player2");
+			break;
+		}
 	};
 	
 	var pick1stPlayer = function(){

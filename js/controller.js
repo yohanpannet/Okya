@@ -1,5 +1,5 @@
 
-var gameController = (function (){
+function GameController(){
 	var board='';
 	var boardView='';
 	var player1 = '';
@@ -48,9 +48,7 @@ var gameController = (function (){
 		currentPlayer.turnStart();
 	};
 	
-	endGame = function(){
-		$('.pBoard').toggle();
-	}
+	
 	
 	return{
 		getBoard : function(){
@@ -85,13 +83,15 @@ var gameController = (function (){
 			//replace tile on view & put in discard
 			$('#lastTile').attr('prop1',tile.prop1)
 				.attr('prop2',tile.prop2);
-			$('#tile'+tile.line+tile.col).removeClass().addClass(
-					$('#'+currentPlayer.id).attr('class')).addClass('ui-block-b');
+			$('#tile'+tile.line+tile.col).removeClass()
+				.addClass('player')
+				.addClass(currentPlayer.id)
+				.addClass('ui-block-b');
 			
 			//Check victory
 			if (board.checkVictory(tile, currentPlayer)){
 				console.log(currentPlayer+" Wins!");
-				endGame();
+				
 				$("#winningText").text(currentPlayer.id+" Won!");
 			}
 			else{
@@ -102,8 +102,8 @@ var gameController = (function (){
 			
 		}
 	};
-})();
-
+};
+var gameController = new GameController();
 
 var tileClicked = function(){
 	$(this).unbind('tap',tileClicked);

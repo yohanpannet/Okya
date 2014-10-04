@@ -40,20 +40,21 @@
 
 	<div data-role="page" id="pagegame">
 
-		<div class='ui-grid-c' id='boardDOM'>
-			
+		<div class='ui-grid-c' id='boardDOM'></div>
+		<div class='ui-grid-c' id='gameInfo'>
+			<div id="discard">
+				<div id="lastTile" class="tile"></div>
+			</div>
+			<a href="#pagestart">Start page</a>
+			<button type="button" data-inline="true" onclick="startNewGame()">tmp restart</button>
+
 		</div>
-		<div id="discard">
-			<div id="lastTile" class="tile"></div>
-		</div>
-		<a href="#pagestart">Start page</a>
-		<button type="button" data-inline="true" onclick="startNewGame()">tmp restart</button>
-		
-		<div class="pBoard" id="pBoard">
+
+		<!-- <div class="pBoard" id="pBoard">
 			<div class="player player1" id="player1" draggable="false"></div>
 			<div class="player player2" id="player2" draggable="false"></div>
-		</div>
-		<div class="pBoard" id="endGameDiv" style='display:none'>
+		</div> -->
+		<div class="pBoard" id="endGameDiv" >
 		    <!-- <p id="winningText">End game.<p> -->
 			<div class="gameBtn" onclick="startNewGame()"
 				style="background-image: url(svg/iconmonstr-undo-2-icon.svg)"></div>

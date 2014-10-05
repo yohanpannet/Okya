@@ -1,17 +1,35 @@
 
-.tile ,.player, .gameBtn{
+.infoDiv{
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile ,.player, .gameBtn, .infoTile{
   height: 25vw;
   width: 25vw;
   float: left;
   background-size: 100% 100%;
   border-radius: 12px;
-  text-align: center;
+  /*text-align: center;*/
   opacity: 1;
   margin-right: 0;
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .tile{
   border: 1px solid #666666;
+}
+
+.infoTile{
+	height: 20vw;
+  	width: 20vw;
 }
 
 .player1{

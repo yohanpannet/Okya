@@ -34,8 +34,8 @@ function GameController(){
 	
 	var pick1stPlayer = function(){
 		currentPlayer = (Math.random()>0.5)?player1:player2;
+		switchPlayer();
 		console.log(currentPlayer.id);
-		currentPlayer.turnStart();
 	};
 	
 	switchPlayer = function(){
@@ -45,6 +45,10 @@ function GameController(){
 		} else {
 			currentPlayer = player1;
 		}
+		$('#currentPlayer').removeClass()
+		.addClass('infoTile').addClass('tile')
+		.addClass('player')
+		.addClass(currentPlayer.id)
 		currentPlayer.turnStart();
 	};
 	
